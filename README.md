@@ -12,7 +12,8 @@
   3. display name and surname in one table column,
   4. add sorting and filtering by name and account type,
   5. take care of the pagination,
-  6. you're supposed to make it look neat, show us some of the sweet styling skill you have.
+  6. you're supposed to make it look neat, show us some of the sweet styling skill you have,
+  7. remember to commit your work (we're more than happy to see commits being a part of documentation of what you did).
 </details>
 <br />
 
