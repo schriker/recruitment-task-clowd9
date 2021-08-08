@@ -39,21 +39,23 @@ const TableRow = ({ row }: TableRowPropsType) => {
           ) : null}
         </TableCell>
       </TableRowMUI>
-      <TableRowMUI>
-        <TableCell
-          className={classes.drawer}
-          align="right"
-          colSpan={Object.keys(row).length}
-        >
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box className={classes.permissions}>
-              {row.permissions.map((permission, index) => (
-                <Chip color="primary" key={index} label={permission} />
-              ))}
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRowMUI>
+      {row.permissions.length ? (
+        <TableRowMUI className={classes.noBorder}>
+          <TableCell
+            className={classes.drawer}
+            align="right"
+            colSpan={Object.keys(row).length}
+          >
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box className={classes.permissions}>
+                {row.permissions.map((permission, index) => (
+                  <Chip color="primary" key={index} label={permission} />
+                ))}
+              </Box>
+            </Collapse>
+          </TableCell>
+        </TableRowMUI>
+      ) : null}
     </>
   );
 };

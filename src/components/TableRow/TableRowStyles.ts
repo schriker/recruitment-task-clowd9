@@ -4,6 +4,8 @@ const useRowStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       height: 65,
+    },
+    noBorder: {
       '& > *': {
         borderBottom: 'unset',
       },

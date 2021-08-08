@@ -4,7 +4,6 @@ import { TableBodyPropsType } from '../../types/table';
 import { getComparator, tableSort } from '../../utils/sort';
 import TableRow from '../TableRow/TableRow';
 
-export type Key = 'fullName' | 'userName' | 'accountType' | string;
 const TableBody = ({
   order,
   orderBy,
