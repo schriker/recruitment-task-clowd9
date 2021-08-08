@@ -9,7 +9,7 @@ export const headCells: TableHeadCell[] = [
   {
     id: 'userName',
     label: 'User Name',
-    sortable: true,
+    sortable: false,
   },
   {
     id: 'accountType',

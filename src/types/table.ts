@@ -29,5 +29,9 @@ export type TableHeadPropsType = {
 export type TableBodyPropsType = {
   rows: TableData[];
   order: Order;
-  orderBy: string;
+  orderBy: keyof TableData;
+};
+
+export type TableRowPropsType = {
+  row: TableData;
 };
