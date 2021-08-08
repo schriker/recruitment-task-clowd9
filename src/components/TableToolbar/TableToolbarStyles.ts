@@ -1,7 +1,11 @@
-import { createStyles, makeStyles } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 
-const useToolbarStyles = makeStyles(() =>
+const useToolbarStyles = makeStyles((theme: Theme) =>
   createStyles({
+    wrapper: {
+      color: theme.palette.common.white,
+      backgroundColor: theme.palette.primary.main,
+    },
     title: {
       flex: '1 1 100%',
     },

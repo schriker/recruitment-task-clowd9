@@ -6,7 +6,7 @@ const TableToolbar = ({ title }: TableToolbarPropsType) => {
   const classes = useToolbarStyles();
 
   return (
-    <Toolbar>
+    <Toolbar className={classes.wrapper}>
       <Typography
         className={classes.title}
         variant="h6"

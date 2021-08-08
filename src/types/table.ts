@@ -14,6 +14,12 @@ export interface TableHeadCell {
   id: keyof TableData;
   label: string;
   sortable: boolean;
+  filter: boolean;
+}
+
+export interface TableFilters {
+  value: keyof TableData;
+  label: string;
 }
 
 export type TableHeadPropsType = {
@@ -36,4 +42,12 @@ export type TableBodyPropsType = {
 
 export type TableRowPropsType = {
   row: TableData;
+};
+
+export type TableFiltersPropsType = {
+  filters: TableFilters[];
+  filter: string;
+  setFilter: (value: keyof TableData) => void;
+  filterValue: string;
+  setFilterValue: (value: string) => void;
 };

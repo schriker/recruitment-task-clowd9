@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core';
 const useRowStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      height: 65,
       '& > *': {
         borderBottom: 'unset',
       },

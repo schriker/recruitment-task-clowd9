@@ -27,7 +27,7 @@ const TableRow = ({ row }: TableRowPropsType) => {
         <TableCell>{row.userName}</TableCell>
         <TableCell>{row.accountType}</TableCell>
         <TableCell>{row.createDate}</TableCell>
-        <TableCell align="center">
+        <TableCell>
           {row.permissions.length ? (
             <IconButton
               aria-label="expand row"
@@ -40,11 +40,15 @@ const TableRow = ({ row }: TableRowPropsType) => {
         </TableCell>
       </TableRowMUI>
       <TableRowMUI>
-        <TableCell className={classes.drawer} align="right" colSpan={5}>
+        <TableCell
+          className={classes.drawer}
+          align="right"
+          colSpan={Object.keys(row).length}
+        >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box className={classes.permissions}>
-              {row.permissions.map((permission) => (
-                <Chip color="primary" label={permission} />
+              {row.permissions.map((permission, index) => (
+                <Chip color="primary" key={index} label={permission} />
               ))}
             </Box>
           </Collapse>

@@ -1,7 +1,10 @@
-import { makeStyles, createStyles } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
 
-const useTableHeadStyles = makeStyles(() =>
+const useTableHeadStyles = makeStyles((theme: Theme) =>
   createStyles({
+    wrapper: {
+      backgroundColor: theme.palette.grey[100],
+    },
     visuallyHidden: {
       border: 0,
       clip: 'rect(0 0 0 0)',

@@ -4,6 +4,7 @@ const useTableStyles = makeStyles(() =>
   createStyles({
     wrapper: {
       width: '100%',
+      overflow: 'hidden',
     },
   })
 );

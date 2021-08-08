@@ -7,16 +7,30 @@ import {
 import { useState } from 'react';
 import { HEAD_CELLS, ROWS_PER_PAGE } from '../../consts/headCells';
 import { TableData } from '../../types/data';
-import { Order, TablePropsType } from '../../types/table';
+import { Order, TableFilters, TablePropsType } from '../../types/table';
+import filterData from '../../utils/filter';
 import TableBody from '../TableBody/TableBody';
+import TableFilter from '../TableFilter/TableFilter';
 import TableHead from '../TableHead/TableHead';
 import TableToolbar from '../TableToolbar/TableToolbar';
 import useTableStyles from './TableStyles';
+
+const filters: TableFilters[] = [];
+
+HEAD_CELLS.forEach((cell) => {
+  if (cell.filter)
+    filters.push({
+      value: cell.id,
+      label: cell.label,
+    });
+});
 
 const Table = ({ rows }: TablePropsType) => {
   const classes = useTableStyles();
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState<Order>('asc');
+  const [filterValue, setFilterValue] = useState('');
+  const [filter, setFilter] = useState<keyof TableData>(filters[0].value);
   const [rowsPerPage, setRowsPerPage] = useState(ROWS_PER_PAGE);
   const [orderBy, setOrderBy] = useState<keyof TableData>('fullName');
 
@@ -43,9 +57,18 @@ const Table = ({ rows }: TablePropsType) => {
     setPage(0);
   };
 
+  const filteredRows = filterData(rows, filterValue, filter);
+
   return (
-    <Paper className={classes.wrapper}>
+    <Paper elevation={3} className={classes.wrapper}>
       <TableToolbar title="Accounts" />
+      <TableFilter
+        filters={filters}
+        filter={filter}
+        setFilter={setFilter}
+        filterValue={filterValue}
+        setFilterValue={setFilterValue}
+      />
       <TableContainer>
         <TableMUI aria-labelledby="tableTitle" aria-label="accounts table">
           <TableHead
@@ -56,7 +79,7 @@ const Table = ({ rows }: TablePropsType) => {
           />
           <TableBody
             rowsPerPage={rowsPerPage}
-            rows={rows}
+            rows={filteredRows}
             page={page}
             order={order}
             orderBy={orderBy}
@@ -66,7 +89,7 @@ const Table = ({ rows }: TablePropsType) => {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={rows.length}
+        count={filteredRows.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

@@ -22,7 +22,7 @@ const TableHead = ({
     };
 
   return (
-    <TableHeadMUI>
+    <TableHeadMUI className={classes.wrapper}>
       <TableRow>
         {headCells.map((headCell) =>
           headCell.sortable ? (
