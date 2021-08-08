@@ -11,10 +11,9 @@ export type TableToolbarPropsType = {
 };
 
 export interface TableHeadCell {
-  disablePadding: boolean;
   id: keyof TableData;
   label: string;
-  numeric: boolean;
+  sortable: boolean;
 }
 
 export type TableHeadPropsType = {
@@ -25,4 +24,10 @@ export type TableHeadPropsType = {
   order: Order;
   orderBy: string;
   headCells: TableHeadCell[];
+};
+
+export type TableBodyPropsType = {
+  rows: TableData[];
+  order: Order;
+  orderBy: string;
 };

@@ -3,32 +3,27 @@ import { TableHeadCell } from '../types/table';
 export const headCells: TableHeadCell[] = [
   {
     id: 'fullName',
-    numeric: false,
-    disablePadding: false,
     label: 'Name and Surname',
+    sortable: true,
   },
   {
     id: 'userName',
-    numeric: false,
-    disablePadding: false,
     label: 'User Name',
+    sortable: true,
   },
   {
     id: 'accountType',
-    numeric: false,
-    disablePadding: false,
     label: 'Account Type',
+    sortable: true,
   },
   {
     id: 'createDate',
-    numeric: false,
-    disablePadding: false,
     label: 'Date',
+    sortable: false,
   },
   {
     id: 'permissions',
-    numeric: false,
-    disablePadding: false,
     label: 'Permissions',
+    sortable: false,
   },
 ];

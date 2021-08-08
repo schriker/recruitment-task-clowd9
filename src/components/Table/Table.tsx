@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { headCells } from '../../consts/headCells';
 import { TableData } from '../../types/data';
 import { Order, TablePropsType } from '../../types/table';
+import TableBody from '../TableBody/TableBody';
 import TableHead from '../TableHead/TableHead';
 import TableToolbar from '../TableToolbar/TableToolbar';
 import useTableStyles from './TableStyles';
@@ -25,17 +26,14 @@ const Table = ({ rows }: TablePropsType) => {
     <Paper>
       <TableToolbar title="Accounts" />
       <TableContainer>
-        <TableMUI
-          // className={classes.table}
-          aria-labelledby="tableTitle"
-          aria-label="accounts table"
-        >
+        <TableMUI aria-labelledby="tableTitle" aria-label="accounts table">
           <TableHead
             headCells={headCells}
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
           />
+          <TableBody rows={rows} order={order} orderBy={orderBy} />
         </TableMUI>
       </TableContainer>
     </Paper>
