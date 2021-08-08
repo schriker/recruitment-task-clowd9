@@ -1,13 +1,14 @@
-// import * as DB from '../db/mock.json';
-import { Box, Container } from '@material-ui/core';
+import * as DB from './db/mock.json';
+import { Container } from '@material-ui/core';
 import useAppStyles from './AppStyles';
+import Table from './components/Table/Table';
 
 const App = () => {
   const classes = useAppStyles();
 
   return (
     <Container maxWidth="md" className={classes.wrapper}>
-      <Box>Table goes here</Box>
+      <Table accounts={DB} />
     </Container>
   );
 };
