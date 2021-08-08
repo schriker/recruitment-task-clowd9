@@ -7,3 +7,11 @@ export interface Data {
   createDate: string;
   permissions: string[];
 }
+
+export interface TableData {
+  fullName: string;
+  userName: string;
+  accountType: string;
+  createDate: string;
+  permissions: string[];
+}
