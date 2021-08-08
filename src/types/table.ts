@@ -28,6 +28,8 @@ export type TableHeadPropsType = {
 
 export type TableBodyPropsType = {
   rows: TableData[];
+  page: number;
+  rowsPerPage: number;
   order: Order;
   orderBy: keyof TableData;
 };

@@ -1,6 +1,11 @@
-import { Paper, TableContainer, Table as TableMUI } from '@material-ui/core';
+import {
+  Paper,
+  TableContainer,
+  Table as TableMUI,
+  TablePagination,
+} from '@material-ui/core';
 import { useState } from 'react';
-import { headCells } from '../../consts/headCells';
+import { HEAD_CELLS, ROWS_PER_PAGE } from '../../consts/headCells';
 import { TableData } from '../../types/data';
 import { Order, TablePropsType } from '../../types/table';
 import TableBody from '../TableBody/TableBody';
@@ -10,11 +15,13 @@ import useTableStyles from './TableStyles';
 
 const Table = ({ rows }: TablePropsType) => {
   const classes = useTableStyles();
+  const [page, setPage] = useState(0);
   const [order, setOrder] = useState<Order>('asc');
+  const [rowsPerPage, setRowsPerPage] = useState(ROWS_PER_PAGE);
   const [orderBy, setOrderBy] = useState<keyof TableData>('fullName');
 
   const handleRequestSort = (
-    _: React.MouseEvent<unknown>,
+    _: React.MouseEvent<unknown, MouseEvent>,
     property: keyof TableData
   ) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -22,20 +29,49 @@ const Table = ({ rows }: TablePropsType) => {
     setOrderBy(property);
   };
 
+  const handleChangePage = (
+    _: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    newPage: number
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
-    <Paper>
+    <Paper className={classes.wrapper}>
       <TableToolbar title="Accounts" />
       <TableContainer>
         <TableMUI aria-labelledby="tableTitle" aria-label="accounts table">
           <TableHead
-            headCells={headCells}
+            headCells={HEAD_CELLS}
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
           />
-          <TableBody rows={rows} order={order} orderBy={orderBy} />
+          <TableBody
+            rowsPerPage={rowsPerPage}
+            rows={rows}
+            page={page}
+            order={order}
+            orderBy={orderBy}
+          />
         </TableMUI>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Paper>
   );
 };

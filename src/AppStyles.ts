@@ -6,7 +6,7 @@ const useAppStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '150px 0',
+    padding: '50px 0',
   },
 }));
 

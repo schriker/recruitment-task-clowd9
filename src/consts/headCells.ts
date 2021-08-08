@@ -1,6 +1,8 @@
 import { TableHeadCell } from '../types/table';
 
-export const headCells: TableHeadCell[] = [
+export const ROWS_PER_PAGE = 5;
+
+export const HEAD_CELLS: TableHeadCell[] = [
   {
     id: 'fullName',
     label: 'Name and Surname',

@@ -5,15 +5,23 @@ import { getComparator, tableSort } from '../../utils/sort';
 import TableRow from '../TableRow/TableRow';
 
 export type Key = 'fullName' | 'userName' | 'accountType' | string;
-const TableBody = ({ order, orderBy, rows }: TableBodyPropsType) => {
+const TableBody = ({
+  order,
+  orderBy,
+  rows,
+  rowsPerPage,
+  page,
+}: TableBodyPropsType) => {
   return (
     <TableBodyMUI>
       {tableSort<TableData>(
         rows,
         getComparator<keyof TableData>(order, orderBy)
-      ).map((row, index) => (
-        <TableRow row={row} key={index} />
-      ))}
+      )
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .map((row, index) => (
+          <TableRow row={row} key={index} />
+        ))}
     </TableBodyMUI>
   );
 };
